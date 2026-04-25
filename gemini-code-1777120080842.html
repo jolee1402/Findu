@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINDU - Register</title>
+    <style>
+        :root {
+            --emerald: #064E3B;
+            --emerald-light: #065F46;
+            --gold: #D97706;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .register-container {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--emerald);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .lang-switch {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--emerald);
+            color: var(--emerald);
+            padding: 4px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active {
+            background-color: var(--emerald);
+            color: var(--white);
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--emerald);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.8rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 5px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-register {
+            width: 100%;
+            background-color: var(--emerald);
+            color: var(--white);
+            padding: 12px;
+            border: none;
+            border-radius: 0.8rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-register:hover {
+            background-color: var(--emerald-light);
+            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.2);
+        }
+
+        .footer-text {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #6B7280;
+        }
+
+        .footer-text a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <div class="logo">FINDU</div>
+    
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('id')">ID</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('cn')">中文</button>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label id="lbl-name">Nama Lengkap</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label id="lbl-email">Email</label>
+            <input type="email" placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+            <label id="lbl-role">Daftar Sebagai</label>
+            <select id="select-role">
+                <option value="student" id="opt-student">Pelajar / Mahasiswa</option>
+                <option value="umkm" id="opt-umkm">Pemilik UMKM</option>
+                <option value="parent" id="opt-parent">Orang Tua / Wali</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label id="lbl-pass">Kata Sandi</label>
+            <input type="password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-register" id="btn-text">DAFTAR SEKARANG</button>
+    </form>
+
+    <div class="footer-text">
+        <span id="have-acc">Sudah punya akun?</span> 
+        <a href="#" id="login-link">Masuk di sini</a>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        id: {
+            name: "Nama Lengkap",
+            email: "Email",
+            role: "Daftar Sebagai",
+            student: "Pelajar / Mahasiswa",
+            umkm: "Pemilik UMKM",
+            parent: "Orang Tua / Wali",
+            pass: "Kata Sandi",
+            btn: "DAFTAR SEKARANG",
+            haveAcc: "Sudah punya akun?",
+            login: "Masuk di sini"
+        },
+        en: {
+            name: "Full Name",
+            email: "Email",
+            role: "Register As",
+            student: "Student",
+            umkm: "UMKM Owner",
+            parent: "Parent / Guardian",
+            pass: "Password",
+            btn: "REGISTER NOW",
+            haveAcc: "Already have an account?",
+            login: "Login here"
+        },
+        cn: {
+            name: "全名",
+            email: "电子邮件",
+            role: "注册身份",
+            student: "学生",
+            umkm: "中小微企业主",
+            parent: "家长 / 监护人",
+            pass: "密码",
+            btn: "现在注册",
+            haveAcc: "已有账户？",
+            login: "在此登录"
+        }
+    };
+
+    function setLang(lang) {
+        document.getElementById('lbl-name').innerText = translations[lang].name;
+        document.getElementById('lbl-email').innerText = translations[lang].email;
+        document.getElementById('lbl-role').innerText = translations[lang].role;
+        document.getElementById('opt-student').innerText = translations[lang].student;
+        document.getElementById('opt-umkm').innerText = translations[lang].umkm;
+        document.getElementById('opt-parent').innerText = translations[lang].parent;
+        document.getElementById('lbl-pass').innerText = translations[lang].pass;
+        document.getElementById('btn-text').innerText = translations[lang].btn;
+        document.getElementById('have-acc').innerText = translations[lang].haveAcc;
+        document.getElementById('login-link').innerText = translations[lang].login;
+
+        const buttons = document.querySelectorAll('.lang-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

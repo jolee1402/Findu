@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINDU - Login</title>
+    <style>
+        :root {
+            --emerald: #064E3B;
+            --emerald-light: #065F46;
+            --gold: #D97706;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--emerald);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            color: var(--emerald-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .lang-switch {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--emerald);
+            color: var(--emerald);
+            padding: 4px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active {
+            background-color: var(--emerald);
+            color: var(--white);
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--emerald);
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.8rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 5px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-login {
+            width: 100%;
+            background-color: var(--emerald);
+            color: var(--white);
+            padding: 12px;
+            border: none;
+            border-radius: 0.8rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-login:hover {
+            background-color: var(--emerald-light);
+            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.2);
+        }
+
+        .footer-text {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #6B7280;
+        }
+
+        .footer-text a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="logo">FINDU</div>
+    <div class="tagline" id="tagline">Proteksi Finansial Masa Depan</div>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('id')">ID</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('cn')">中文</button>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label id="lbl-user">Email / Username</label>
+            <input type="text" placeholder="...">
+        </div>
+        <div class="form-group">
+            <label id="lbl-pass">Kata Sandi</label>
+            <input type="password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-login" id="btn-text">MASUK</button>
+    </form>
+
+    <div class="footer-text">
+        <span id="no-acc">Belum punya akun?</span> 
+        <a href="#" id="reg-link">Daftar Sekarang</a>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        id: {
+            tagline: "Proteksi Finansial Masa Depan",
+            user: "Email / Username",
+            pass: "Kata Sandi",
+            btn: "MASUK",
+            noAcc: "Belum punya akun?",
+            reg: "Daftar Sekarang"
+        },
+        en: {
+            tagline: "Future Financial Protection",
+            user: "Email / Username",
+            pass: "Password",
+            btn: "LOGIN",
+            noAcc: "Don't have an account?",
+            reg: "Register Now"
+        },
+        cn: {
+            tagline: "未来的财务保护",
+            user: "电子邮件 / 用户名",
+            pass: "密码",
+            btn: "登录",
+            noAcc: "还没有账户？",
+            reg: "现在 melu"
+        }
+    };
+
+    function setLang(lang) {
+        // Update Text
+        document.getElementById('tagline').innerText = translations[lang].tagline;
+        document.getElementById('lbl-user').innerText = translations[lang].user;
+        document.getElementById('lbl-pass').innerText = translations[lang].pass;
+        document.getElementById('btn-text').innerText = translations[lang].btn;
+        document.getElementById('no-acc').innerText = translations[lang].noAcc;
+        document.getElementById('reg-link').innerText = translations[lang].reg;
+
+        // Update Active Button
+        const buttons = document.querySelectorAll('.lang-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
